@@ -44,17 +44,20 @@ save it and then
 
         \DataCarrier::set('num', 1); // ['a' => 1]
     
-        \DataCarrier::get('num') // 1
+        \DataCarrier::get('num'); // 1
     
         // you can set a default value for get method
     
         \DataCarrier::get('num', 0); // if you cannot get it, it will return 0
+        
+        \DataCarrier::all(); // it will get an array with all items
     
     you can also use dot to seperate array
     
         # [ 
         #    'a' => [
-        #        'b' => 'value',
+        #        'b' => 'value'
+        #    ]
         # ]
         
         \DataCarrier::get('a.b'); // 'value'
@@ -83,7 +86,7 @@ save it and then
     carrier() // it's just return App::make('DataCarrier')
     
 
-### Another way to work wit DataCarier
+### Another way to work with DataCarier
 
 * get, set can replace by it
 
