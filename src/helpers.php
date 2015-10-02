@@ -4,7 +4,7 @@ if (!function_exists('carrier')) {
 
     function carrier($key = null)
     {
-        \App::make('DataCarrier')->hold($key);
+        return \App::make('DataCarrier')->hold($key);
     }
 
 }
