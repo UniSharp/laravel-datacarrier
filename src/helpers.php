@@ -2,16 +2,13 @@
 
 if (!function_exists('carrier')) {
 
-    function carrier($key = null, $value = null)
+    function carrier($key = null)
     {
-        if (is_null($key) && is_null($value)) {
-            return \App::make('DataCarrier');
-        } elseif (!is_null($key)) {
-            return carrier_get($key);
-        } else {
-            return carrier_set($key, $value);
+        if (!empty($key)) {
+            \App::make('DataCarrier')->hold($key);
         }
 
+        return \App::make('DataCarrier');
     }
 
 }

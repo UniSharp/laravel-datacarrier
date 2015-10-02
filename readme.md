@@ -2,101 +2,90 @@
 
 ### Introduction
 
-this api will keep data in global, let your code more clear.
+Laravel File API is good way to handle files with Laravel Storage.
 
-And you can extend your formating method to help you format global data
-
-### Install Data Carrier
+### Install File API
 
 composer.json:
 
     "require" : {
-        "unisharp/laravel-datacarrier" : "dev-master"
+        "unisharp/laravel-fileapi" : "dev-master"
     }, 
     "repositories": {
         "type": "git",
-        "url": "https://github.com/UniSharp/laravel-datacarrier.git
+        "url": "https://github.com/UniSharp/laravel-fileapi.git
     }
 
 save it and then 
 
     composer update    
 
-### Set ServiceProvider and Set Facade
+### Initialize File API
 
-#### in config/app.php:
+    use \Unisharp\FileApi\FileApi;
+    
+    $fa = new FileApi();
+    
+or
+    
+    $fa = new FileApi('/images'); # initialize it by giving a base path
+    
 
-* ServiceProfider
+### Save to Storage By Giving Lravel Upload File
 
-        Unisharp\DataCarrier\DataCarrierServiceProvider::class,
+* Normal Usage
+
+    get unique filename
+
+        $file = $fa->save(\Input::file('image')); // => wfj412.jpg
+    
+    or input files is an array
+    
+        $files = [];
+        foreach (\Input::file('images') as $file) {
+            $files []= $fa->save('images');
+        }
+    
+* Custimize your upload file name
+
+        $file = $fa->save('image', 'custimized_filename'); // => custimized_filename.jpg
+          
+
+### Get file fullpath (abstract path from Laravel Storage)
+
+    $fa->getPath('wfj412.jpg'); // => '/images/wfj412.jpg'
+    
+### Routing your files
+
+All uploaded files cannot found in public folder, because FileApi use Laravel Storage to store them.  
+You can write a routing rules to get it. it will response file content and use http cache by default.
+
+    Route::get('/upload/{filename}', function ($filename) {
+        $fa = new FileApi();
+        return $fa->getResponse($filename);
+    });
+    
+and it can add headers array by optional
+
+    return $fa->getResponse($filename, ['Content-Disposition', 'attachement']);
+    
+### Parse File Path to URL
+if you store your file into cloud storage and you want to get url cloud site,
+you can use url() method to get it
+
+    echo $fa->getUrl('wfjsdf.jpg'); // => "https://s3-ap-northeast-1.amazonaws.com/xxx/xxx/55c1e027caa62L.png"
+    
+### Work with Laravel Storage
+
+* Get file content
+
+        \Storage::get($fa->getPath('wfj412.jpg'));
         
+* Write files
 
-* alias
-
-        'DataCarrier' => Unisharp\DataCarrier\DataCarrierFacade::class,
+        \Storage::put($fa->getPath('wfj412.jpg'));
         
-        
-### Usage
+* Get Mime Type
 
-* get and set global data
-
-    you can use Facade to set and get items
-
-        \DataCarrier::set('num', 1); // ['a' => 1]
+        \Storage::mimeType($fa->getPath('wfj412.jpg'));
     
-        \DataCarrier::get('num') // 1
-    
-        // you can set a default value for get method
-    
-        \DataCarrier::get('num', 0); // if you cannot get it, it will return 0
-    
-    you can also use dot to seperate array
-    
-        # [ 
-        #    'a' => [
-        #        'b' => 'value',
-        # ]
-        
-        \DataCarrier::get('a.b'); // 'value'
-    
-* customize your format method (Add method into Data Carrier)
-
-        \DataCarrier::extend('format', function ($data) {
-            return number_format($data);
-        })
-    
-    
-* format your data
-
-        # ['num' => '100000']
-        \DataCarrier::format('num') // 100,000
-        
-### Helper can use helper to set, get your data 
-
-* get, set function
-    
-    carrier_set('num', 1); // ['a' => 1]
-    carrier_get('num'); // 1
-    
-* use carrier() to muniplate container
-
-    carrier() // it's just return App::make('DataCarrier')
-    
-
-### Another way to work wit DataCarier
-
-* get, set can replace by it
-
-         carrier('num')->get();
-     
-         carrier('num')->set(5);
-     
-* extend your formating method
-
-        carrier()->extend('format', function ($data) {
-            return number_format($data);
-        })
-
-* use your formatting method
-
-        carrier('num')->format(); // it will return formating result
