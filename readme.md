@@ -78,12 +78,12 @@ save it and then
 
 * get, set function
     
-    carrier_set('num', 1); // ['a' => 1]
-    carrier_get('num'); // 1
+        carrier_set('num', 1); // ['a' => 1]
+        carrier_get('num'); // 1
     
 * use carrier() to muniplate container
 
-    carrier() // it's just return App::make('DataCarrier')
+        carrier() // it's just return App::make('DataCarrier')
     
 
 ### Another way to work with DataCarier
@@ -91,7 +91,6 @@ save it and then
 * get, set can replace by it
 
          carrier('num')->get();
-     
          carrier('num')->set(5);
      
 * extend your formating method
