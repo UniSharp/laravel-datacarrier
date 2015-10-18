@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Unisharp\\Datacarrier\\": "src/Datacarrier/"
+      "Unisharp\\DataCarrier\\": "src/"
     }
   }
 }

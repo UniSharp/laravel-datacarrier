@@ -1,7 +1,7 @@
 <?php
-include_once 'src/Datacarrier/helpers.php';
+include_once __DIR__ . '../src/helpers.php';
 
-use Unisharp\Datacarrier\DataCarrier;
+use Unisharp\DataCarrier\DataCarrier;
 //use Illuminate\Support\Facades\Facade;
 //use Mockery as m;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Unisharp\Datacarrier;
+namespace Unisharp\DataCarrier;
 
 //use Illuminate\Support\Collection;
 
