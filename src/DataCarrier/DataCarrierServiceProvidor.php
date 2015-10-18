@@ -1,5 +1,5 @@
 <?php
-namespace Unisharp\DataCarrier;
+namespace Unisharp\Datacarrier;
 
 use Illuminate\Support\ServiceProvider;
 
