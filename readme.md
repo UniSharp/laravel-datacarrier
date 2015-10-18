@@ -1,8 +1,12 @@
 ## Laravel Data Carrier
+[![Build Status](https://travis-ci.org/UniSharp/laravel-datacarrier.svg)](https://travis-ci.org/UniSharp/laravel-datacarrier)
+[![Version](https://img.shields.io/packagist/v/unisharp/laravel-datacarrier.svg)](https://packagist.org/packages/unisharp/laravel-datacarrier)
+[![License](https://img.shields.io/github/license/unisharp/laravel-datacarrier.svg)](https://packagist.org/packages/unisharp/laravel-datacarrier)
+[![Total Downloads](https://img.shields.io/packagist/dt/unisharp/laravel-datacarrier.svg)](https://packagist.org/packages/unisharp/laravel-datacarrier)
 
 ### Introduction
 
-this api will keep data in global, let your code more clear.
+Provide an object as Facade to put all global variables togetther, clean your code. Normally we use it to passing variables from Controller to View.
 
 And you can extend your formating method to help you format global data
 
@@ -11,7 +15,7 @@ And you can extend your formating method to help you format global data
 composer.json:
 
     "require" : {
-        "unisharp/laravel-datacarrier" : "dev-master"
+        "unisharp/laravel-datacarrier" : "~1.0"
     }, 
     "repositories": {
         "type": "git",
