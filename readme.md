@@ -46,13 +46,15 @@ save it and then
 
     you can use Facade to set and get items
 
-        \DataCarrier::set('num', 1); // ['a' => 1]
+        \DataCarrier::set('key', 1); // ['a' => 1]
     
-        \DataCarrier::get('num'); // 1
+        \DataCarrier::get('key'); // 1
     
         // you can set a default value for get method
     
-        \DataCarrier::get('num', 0); // if you cannot get it, it will return 0
+        \DataCarrier::get('key', 0); // if you cannot get it, it will return 0
+
+        $var = d('key', 0); // Quick access by d() helper.
         
         \DataCarrier::all(); // it will get an array with all items
     

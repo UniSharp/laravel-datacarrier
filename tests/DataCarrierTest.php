@@ -55,6 +55,16 @@ class DataCarrierTest extends PHPUnit_Framework_TestCase
         $this->assertSame(1, $val);
     }
 
+    public function testExtend()
+    {
+        // TBD
+    }
+
+    public function testHold()
+    {
+        // TBD
+    }
+
     public function testHelpers()
     {
         // TBD

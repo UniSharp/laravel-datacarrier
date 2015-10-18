@@ -2,7 +2,7 @@
 
 namespace Unisharp\DataCarrier;
 
-use Illuminate\Support\Collection;
+//use Illuminate\Support\Collection;
 
 class DataCarrier
 {

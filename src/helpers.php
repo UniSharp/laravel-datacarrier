@@ -1,4 +1,12 @@
 <?php
+if (!function_exists('d')) {
+
+    function d($key, $default = null)
+    {
+        return \App::make('DataCarrier')->get($key, $default);
+    }
+
+}
 
 if (!function_exists('carrier')) {
 
