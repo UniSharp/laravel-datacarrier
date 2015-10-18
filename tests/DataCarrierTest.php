@@ -42,11 +42,17 @@ class DataCarrierTest extends PHPUnit_Framework_TestCase
         $dc = new DataCarrier();
         $dc->set('obj', $obj);
         $outObj = $dc->get('obj');
-        $this->assertSame($obj->public_attr, $outObj->public_attr);
-        $this->assertSame($obj::$static_attr, $outObj::$static_attr);
+        $this->assertSame($obj, $outObj);
 
         $obj->public_attr = 'b';
         $this->assertSame($obj->public_attr, $outObj->public_attr);
+    }
+
+    public function testDefault()
+    {
+        $dc = new DataCarrier();
+        $val = $dc->get('not_exists', 1);
+        $this->assertSame(1, $val);
     }
 
     public function testHelpers()
