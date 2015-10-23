@@ -24,7 +24,7 @@ class DataCarrier
 
     public function get($key = null, $default = null)
     {
-        if (is_null($key) && !empty($this->hold_key_name)) {
+        if (func_num_args() == 0 && !empty($this->hold_key_name)) {
             return $this->get($this->hold_key_name, $default);
         }
 
