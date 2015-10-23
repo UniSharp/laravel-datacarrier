@@ -15,8 +15,8 @@ class DataCarrier
 
     public function set($key, $value = null)
     {
-        if (is_null($value) && !empty($hold_key_name)) {
-            return $this->set($this->hold_key_name, $value);
+        if (func_num_args() == 1 && !empty($this->hold_key_name)) {
+            return $this->set($this->hold_key_name, $key);
         }
 
         return array_set($this->items, $key, $value);
@@ -24,7 +24,7 @@ class DataCarrier
 
     public function get($key = null, $default = null)
     {
-        if (is_null($key) && !empty($hold_key_name)) {
+        if (is_null($key) && !empty($this->hold_key_name)) {
             return $this->get($this->hold_key_name, $default);
         }
 
