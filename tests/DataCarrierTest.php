@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '../src/helpers.php';
+@include_once '../src/helpers.php';
 
 use Unisharp\DataCarrier\DataCarrier;
 //use Illuminate\Support\Facades\Facade;
@@ -11,14 +11,27 @@ class TestObj
     public $public_attr;
 }
 
-class DataCarrierTest extends PHPUnit_Framework_TestCase
+class DataCarrierTest extends \Orchestra\Testbench\TestCase
 {
     public function setUp()
     {
+        parent::setUp();
     }
 
     public function tearDown()
     {
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [Unisharp\DataCarrier\DataCarrierServiceProvider::class];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'DataCarrier' => \Unisharp\DataCarrier\DataCarrierFacade::class,
+        ];
     }
 
     public function testScalarSetGet()
@@ -68,5 +81,8 @@ class DataCarrierTest extends PHPUnit_Framework_TestCase
     public function testHelpers()
     {
         // TBD
+        $data = ['a' => 'hello', 'b' => 'world'];
+        carrier('data')->set($data);
+        $this->assertSame($data, carrier('data')->get());
     }
 }

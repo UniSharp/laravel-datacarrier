@@ -15,6 +15,7 @@
     "illuminate/support": ">=5.0.0"
   },
   "require-dev": {
+    "orchestra/testbench": "~3.0",
     "phpunit/phpunit": "~4.8"
   },
   "autoload": {
