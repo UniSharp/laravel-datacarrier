@@ -50,7 +50,7 @@ class DataCarrier
     public function __call($name, $args)
     {
         if (array_key_exists($name, $this->methods) && isset($args[0])) {
-            return $this->methods[$name]($this->get($args[0]));
+            return call_user_func_array($this->methods[$name], $args);
         } elseif (count($args) == 0 && !empty($this->hold_key_name)) {
             return $this->methods[$name]($this->get($this->hold_key_name));
         }
